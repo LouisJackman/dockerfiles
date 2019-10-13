@@ -1,7 +1,8 @@
 FROM base-dev
 
 USER root
-RUN apt-get --yes --no-install-recommends install \
+RUN apt-get --yes update \
+    && apt-get --yes --no-install-recommends install \
         build-essential \
         gdb \
         manpages \
