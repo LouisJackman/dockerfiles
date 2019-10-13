@@ -38,9 +38,10 @@ RUN git clone https://github.com/Shougo/deoplete.nvim.git \
     && git clone https://github.com/tpope/vim-surround \
     && git clone https://github.com/vim-airline/vim-airline
 
-WORKDIR LanguageClient-neovim
-RUN ./install.sh
+RUN LanguageClient-neovim/install.sh
 
+VOLUME /home/dev/src
 WORKDIR /home/dev
+
 ENTRYPOINT ["/usr/bin/zsh"]
 
