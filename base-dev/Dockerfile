@@ -1,6 +1,7 @@
 FROM debian:buster-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG C.UTF-8
 
 RUN apt-get --yes update \
     && apt-get --yes --no-install-recommends install \

@@ -10,9 +10,9 @@ function! s:setup.SetOptions()
     set hlsearch
     set incsearch
     set nobackup
-    set nonumber
     set noswapfile
     set nowritebackup
+    set number
     set path+=**
     set scrolloff=5
     set shiftwidth=4
@@ -104,7 +104,14 @@ endfunction
 function! s:setup.SetupBasePlugins()
     let g:ctrlp_map = '<c-p>'
 
+    " Workaround some Vims not being compiled with support for the conceal
+    " feature, which results in NERDTree showing junk characters.
+    let g:NERDTreeNodeDelimiter = "\u00a0"
+
     noremap <c-n> :NERDTreeToggle<cr>
+
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
     let g:deoplete#enable_at_startup = 1
 endfunction
