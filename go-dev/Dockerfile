@@ -12,9 +12,12 @@ RUN curl -LSOs https://dl.google.com/go/go${GO_VER}.linux-amd64.tar.gz \
 
 ENV PATH $PATH:/home/dev/go/bin
 
-RUN git clone \
-    https://github.com/fatih/vim-go.git \
-    /home/dev/.vim/pack/default/start/vim-go
+RUN [ \
+    "git", \
+    "clone", \
+    "https://github.com/fatih/vim-go.git", \
+    "/home/dev/.vim/pack/default/start/vim-go" \
+]
 
 WORKDIR /home/dev/src
 
