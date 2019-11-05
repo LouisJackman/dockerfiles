@@ -103,6 +103,8 @@ endfunction
 function! s:setup.SetupBasePlugins()
     let g:ctrlp_map = '<c-p>'
 
+    let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+
     " Workaround some Vims not being compiled with support for the conceal
     " feature, which results in NERDTree showing junk characters.
     let g:NERDTreeNodeDelimiter = "\u00a0"
