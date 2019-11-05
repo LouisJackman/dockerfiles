@@ -2,7 +2,7 @@
 
 autoload -Uz promptinit
 promptinit
-prompt adam1
+prompt redhat
 
 setopt histignorealldups sharehistory
 
