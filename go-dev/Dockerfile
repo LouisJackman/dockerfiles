@@ -19,5 +19,13 @@ RUN [ \
     "/home/dev/.vim/pack/default/start/vim-go" \
 ]
 
+RUN [ \
+    "vim", \
+    "-c", \
+    "GoInstallBinaries", \
+    "-c", \
+    "quit" \
+]
+
 WORKDIR /home/dev/src
 
