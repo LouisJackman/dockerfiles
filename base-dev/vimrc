@@ -1,5 +1,5 @@
 filetype plugin on
-syntax on
+syntax off
 
 let s:setup = {}
 
@@ -12,7 +12,6 @@ function! s:setup.SetOptions()
     set nobackup
     set noswapfile
     set nowritebackup
-    set number
     set path+=**
     set scrolloff=5
     set shiftwidth=4
@@ -109,6 +108,8 @@ function! s:setup.SetupBasePlugins()
     let g:NERDTreeNodeDelimiter = "\u00a0"
 
     noremap <c-n> :NERDTreeToggle<cr>
+
+    let g:airline_theme='minimalist'
 
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif

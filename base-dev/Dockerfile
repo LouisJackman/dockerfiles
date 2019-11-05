@@ -41,7 +41,8 @@ RUN git clone https://github.com/Shougo/deoplete.nvim.git \
     && git clone https://github.com/scrooloose/nerdtree.git \
     && git clone https://github.com/tpope/vim-fugitive \
     && git clone https://github.com/tpope/vim-surround \
-    && git clone https://github.com/vim-airline/vim-airline
+    && git clone https://github.com/vim-airline/vim-airline \
+    && git clone https://github.com/vim-airline/vim-airline-themes
 
 WORKDIR LanguageClient-neovim
 RUN ./install.sh
