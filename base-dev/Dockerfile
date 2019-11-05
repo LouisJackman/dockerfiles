@@ -25,10 +25,6 @@ USER dev
 COPY --chown=dev .zshrc /home/dev/
 COPY --chown=dev vimrc /home/dev/.vim/
 
-RUN sed -i -Ee \
-    's/^[[:space:]]*prompt[[:space:]]*adam1[[:space:]]*$/prompt redhat/' \
-    ~/.zshrc
-
 RUN ["python3", "-m", "pip", "install", "pynvim"]
 
 RUN ["mkdir", "-p", "/home/dev/.vim/pack/default/start"]
