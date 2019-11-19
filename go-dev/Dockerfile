@@ -1,7 +1,7 @@
 FROM base-dev
 
-ENV GO_VER 1.13.1
-ENV GO_SHA_SUM 94f874037b82ea5353f4061e543681a0e79657f787437974214629af8407d124
+ENV GO_VER 1.13.4
+ENV GO_SHA_SUM 692d17071736f74be04a72a06dab9cac1cd759377bd85316e52b2227604c004c
 
 # For cgo, and also to resolve this issue:
 # https://github.com/golang/go/issues/26988
