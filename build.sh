@@ -3,11 +3,20 @@
 set -o errexit
 set -o nounset
 
-for env in base-dev *-dev
+build() (
+    env=$1
+
+    cd "$env"
+    docker build -t "$env" .
+)
+
+build base-dev
+for image in *
 do
-    (
-        cd "$env"
-        docker build -t "$env" .
-    )
+    if [ "$image" != base-dev ]
+    then
+        build "$image" &
+    fi
 done
+wait
 
