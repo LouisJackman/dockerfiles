@@ -17,10 +17,15 @@ RUN apt-get --yes update \
         zsh \
     && rm -fr /var/lib/apt/lists/*
 
+SHELL ["/usr/bin/zsh", "-c"]
+
 RUN ["useradd", "-m", "dev"]
 RUN ["chsh", "-s", "/usr/bin/zsh", "dev"]
 
 USER dev
+
+# Reduce shell configuration complexity by just using zsh-style files.
+RUN ["rm", "/home/dev/.bash_logout", "/home/dev/.bashrc", "/home/dev/.profile"]
 
 COPY --chown=dev .zshrc /home/dev/
 COPY --chown=dev vimrc /home/dev/.vim/
