@@ -3,6 +3,7 @@ FROM base-dev
 USER root
 RUN apt-get --yes update \
     && apt-get --yes --no-install-recommends install \
+        elinks \
         lynx \
         w3m \
         \
