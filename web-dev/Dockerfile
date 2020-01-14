@@ -19,7 +19,8 @@ RUN . ~/.nvm/nvm.sh && npm \
     typescript \
     create-react-app
 
-WORKDIR /home/dev
+
+WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
 RUN git clone https://github.com/pangloss/vim-javascript \
     && git clone https://github.com/MaxMEllon/vim-jsx-pretty \
     && git clone https://github.com/leafgarland/typescript-vim \

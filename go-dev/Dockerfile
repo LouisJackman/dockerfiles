@@ -26,11 +26,11 @@ RUN [ \
     "git", \
     "clone", \
     "https://github.com/fatih/vim-go.git", \
-    "/home/dev/.vim/pack/default/start/vim-go" \
+    "/home/dev/.local/share/nvim/site/pack/default/start/vim-go" \
 ]
 
 RUN [ \
-    "vim", \
+    "nvim", \
     "-c", \
     "GoInstallBinaries", \
     "-c", \

@@ -28,10 +28,10 @@ RUN [ \
     "git", \
     "clone", \
     "https://github.com/rust-lang/rust.vim", \
-    "/home/dev/.vim/pack/default/start/rust.vim" \
+    "/home/dev/.local/share/nvim/site/pack/default/start/rust.vim" \
 ]
 
-COPY additional_plugins.vim /home/dev/.vim/autoload/
+COPY additional_plugins.vim /home/dev/.local/share/nvim/autoload/
 
 WORKDIR /home/dev/src
 
