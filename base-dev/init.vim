@@ -1,11 +1,12 @@
 filetype plugin on
-syntax off
+syntax on
 
 let s:setup = {}
 
 function! s:setup.SetOptions()
     set cursorline
     set expandtab
+    set guicursor
     set hidden
     set hlsearch
     set incsearch
@@ -18,7 +19,6 @@ function! s:setup.SetOptions()
     set smartcase
     set smartindent
     set softtabstop=4
-    set t_Co=256
     set tabstop=4
     set textwidth=80
     set ttyfast
@@ -96,14 +96,12 @@ function! s:setup.BindKeys()
     nnoremap g# g#zz
 endfunction
 
-function! s:setup.SetupUi()
-    let g:solarized_termcolors=256
-endfunction
-
 function! s:setup.SetupBasePlugins()
     let g:ctrlp_map = '<c-p>'
 
     let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+
+    colorscheme nord
 
     " Workaround some Vims not being compiled with support for the conceal
     " feature, which results in NERDTree showing junk characters.
@@ -111,7 +109,7 @@ function! s:setup.SetupBasePlugins()
 
     noremap <c-n> :NERDTreeToggle<cr>
 
-    let g:airline_theme='minimalist'
+    let g:airline_theme='nord'
 
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -120,7 +118,7 @@ function! s:setup.SetupBasePlugins()
 endfunction
 
 function! s:setup.SetupAdditionalPlugins()
-    let l:vimpath = expand("~/.vim/autoload/additional_plugins.vim")
+    let l:vimpath = expand("~/.local/share/nvim/autoload/additional_plugins.vim")
     if filereadable(vimpath)
         call additional_plugins#Setup()
     endif
@@ -130,7 +128,6 @@ function! s:setup.Setup() dict
     call self.SetOptions()
     call self.LockDownModeline()
     call self.BindKeys()
-    call self.SetupUi()
     call self.SetupBasePlugins()
     call self.SetupAdditionalPlugins()
 endfunction
