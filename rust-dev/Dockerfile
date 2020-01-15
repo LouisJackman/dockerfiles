@@ -26,12 +26,8 @@ RUN { \
 } >>~/.zshrc
 
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
-RUN git \
-        clone \
-        --depth 1 \
-        https://github.com/rust-lang/rust.vim \
+RUN git clone https://github.com/rust-lang/rust.vim \
     && cd rust.vim \
-    && git fetch --depth 1 . "$RUST_VIM_VERSION_COMMIT" \
     && git reset "$RUST_VIM_VERSION_COMMIT"
 
 COPY additional_plugins.vim /home/dev/.local/share/nvim/autoload/

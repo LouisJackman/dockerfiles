@@ -26,21 +26,15 @@ RUN . ~/.nvm/nvm.sh && npm \
 
 
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
-RUN git clone --depth 1 https://github.com/pangloss/vim-javascript \
+RUN git clone https://github.com/pangloss/vim-javascript \
     && git clone --depth 1 https://github.com/MaxMEllon/vim-jsx-pretty --branch "$NVIM_JSX_PRETTY_VERSION" \
-    && git clone --depth 1 https://github.com/leafgarland/typescript-vim \
-    && git clone --depth 1 https://github.com/ianks/vim-tsx \
+    && git clone https://github.com/leafgarland/typescript-vim \
+    && git clone https://github.com/ianks/vim-tsx \
     \
     # Some Vim plugins have no release tags or very outdated latest versions.
-    && cd vim-javascript \
-        && git fetch --depth 1 . "$NVIM_JAVASCRIPT_VERSION_COMMIT" \
-        && git reset "$NVIM_JAVASCRIPT_VERSION_COMMIT" \
-    && cd ../typescript-vim \
-        && git fetch --depth 1 . "$NVIM_TYPESCRIPT_VERSION_COMMIT" \
-        && git reset "$NVIM_TYPESCRIPT_VERSION_COMMIT" \
-    && cd ../vim-tsx \
-        && git fetch --depth 1 . "$NVIM_TSX_VERSION_COMMIT" \
-        && git reset "$NVIM_TSX_VERSION_COMMIT"
+    && cd vim-javascript && git reset "$NVIM_JAVASCRIPT_VERSION_COMMIT" \
+    && cd ../typescript-vim && git reset "$NVIM_TYPESCRIPT_VERSION_COMMIT" \
+    && cd ../vim-tsx && git reset "$NVIM_TSX_VERSION_COMMIT"
 
 WORKDIR /home/dev/src
 

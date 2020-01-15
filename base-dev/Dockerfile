@@ -59,27 +59,21 @@ RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/pack/default/start"]
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
 RUN git clone --depth 1 https://github.com/Shougo/deoplete.nvim.git --branch "$NVIM_DEOPLETE_VERSION" \
     && git clone --depth 1 https://github.com/airblade/vim-gitgutter \
-    && git clone --depth 1 https://github.com/arcticicestudio/nord-vim --branch "$NVIM_NORD_VIM_VERSION" \
+    && git clone https://github.com/arcticicestudio/nord-vim --branch "$NVIM_NORD_VIM_VERSION" \
     && git clone --depth 1 https://github.com/autozimu/LanguageClient-neovim --branch "$NVIM_LANGUAGE_CLIENT_VERSION" \
     && git clone --depth 1 https://github.com/ctrlpvim/ctrlp.vim.git --branch "$NVIM_CTRL_P_VERSION" \
     && git clone --depth 1 https://github.com/dense-analysis/ale --branch "$NVIM_ALE_VERSION" \
-    && git clone --depth 1 https://github.com/honza/vim-snippets \
+    && git clone https://github.com/honza/vim-snippets \
     && git clone --depth 1 https://github.com/majutsushi/tagbar --branch "$NVIM_TAGBAR_VERSION" \
     && git clone --depth 1 https://github.com/preservim/nerdtree.git --branch "$NVIM_NERDTREE_VERSION" \
     && git clone --depth 1 https://github.com/tpope/vim-fugitive --branch "$NVIM_FUGITIVE_VERSION" \
-    && git clone --depth 1 https://github.com/tpope/vim-surround \
+    && git clone https://github.com/tpope/vim-surround \
     && git clone --depth 1 https://github.com/vim-airline/vim-airline --branch "$NVIM_AIRLINE_VERSION" \
     \
     # Some Vim plugins have no release tags or very outdated latest versions.
-    && cd vim-gitgutter \
-        && git fetch --depth 1 . "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
-        && git reset "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
-    && cd ../vim-snippets \
-        && git fetch --depth 1 . "$NVIM_SNIPPETS_VERSION_COMMIT" \
-        && git reset "$NVIM_SNIPPETS_VERSION_COMMIT" \
-    && cd ../vim-surround \
-        && git fetch --depth 1 . "$NVIM_SURROUND_VERSION_COMMIT" \
-        && git reset "$NVIM_SURROUND_VERSION_COMMIT"
+    && cd vim-gitgutter && git reset "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
+    && cd ../vim-snippets && git reset "$NVIM_SNIPPETS_VERSION_COMMIT" \
+    && cd ../vim-surround && git reset "$NVIM_SURROUND_VERSION_COMMIT"
 
 WORKDIR LanguageClient-neovim
 RUN ./install.sh
