@@ -2,7 +2,22 @@ FROM debian:buster-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
+
 ENV NEOVIM_VERSION 0.4.3
+ENV PYNVIM_VERSION 0.4.4
+
+ENV NVIM_DEOPLETE_VERSION 5.1
+ENV NVIM_LANGUAGE_CLIENT_VERSION 0.1.156
+ENV NVIM_GIT_GUTTER_VERSION_COMMIT 0946c53cfc6edfb8dbf4b25a27d013c0b6ec6619
+ENV NVIM_NORD_VIM_VERSION v0.13.0
+ENV NVIM_CTRL_P_VERSION 1.80
+ENV NVIM_ALE_VERSION v2.6.0
+ENV NVIM_SNIPPETS_VERSION_COMMIT 5279654b3e9fc280742d02c9509d4313d9da18e9
+ENV NVIM_TAGBAR_VERSION v2.7
+ENV NVIM_NERDTREE_VERSION 6.4.3
+ENV NVIM_FUGITIVE_VERSION v3.1
+ENV NVIM_SURROUND_VERSION_COMMIT f51a26d3710629d031806305b6c8727189cd1935
+ENV NVIM_AIRLINE_VERSION v0.11
 
 RUN apt-get --yes update \
     && apt-get install --yes --no-install-recommends \
@@ -38,24 +53,33 @@ RUN ["rm", "/home/dev/.bash_logout", "/home/dev/.bashrc", "/home/dev/.profile"]
 COPY --chown=dev .zshrc /home/dev/
 COPY --chown=dev init.vim /home/dev/.config/nvim/
 
-RUN ["python3", "-m", "pip", "install", "pynvim"]
+RUN python3 -m pip install --user pynvim@"$PYNVIM_VERSION"
 
 RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/pack/default/start"]
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
-RUN git clone https://github.com/Shougo/deoplete.nvim.git \
-    && git clone https://github.com/airblade/vim-gitgutter \
-    && git clone https://github.com/arcticicestudio/nord-vim \
-    && git clone https://github.com/autozimu/LanguageClient-neovim \
-    && git clone https://github.com/ctrlpvim/ctrlp.vim.git \
-    && git clone https://github.com/dense-analysis/ale \
-    && git clone https://github.com/honza/vim-snippets \
-    && git clone https://github.com/majutsushi/tagbar \
-    && git clone https://github.com/roxma/nvim-yarp.git \
-    && git clone https://github.com/roxma/vim-hug-neovim-rpc \
-    && git clone https://github.com/scrooloose/nerdtree.git \
-    && git clone https://github.com/tpope/vim-fugitive \
-    && git clone https://github.com/tpope/vim-surround \
-    && git clone https://github.com/vim-airline/vim-airline
+RUN git clone --depth 1 https://github.com/Shougo/deoplete.nvim.git --branch "$NVIM_DEOPLETE_VERSION" \
+    && git clone --depth 1 https://github.com/airblade/vim-gitgutter \
+    && git clone --depth 1 https://github.com/arcticicestudio/nord-vim --branch "$NVIM_NORD_VIM_VERSION" \
+    && git clone --depth 1 https://github.com/autozimu/LanguageClient-neovim --branch "$NVIM_LANGUAGE_CLIENT_VERSION" \
+    && git clone --depth 1 https://github.com/ctrlpvim/ctrlp.vim.git --branch "$NVIM_CTRL_P_VERSION" \
+    && git clone --depth 1 https://github.com/dense-analysis/ale --branch "$NVIM_ALE_VERSION" \
+    && git clone --depth 1 https://github.com/honza/vim-snippets \
+    && git clone --depth 1 https://github.com/majutsushi/tagbar --branch "$NVIM_TAGBAR_VERSION" \
+    && git clone --depth 1 https://github.com/preservim/nerdtree.git --branch "$NVIM_NERDTREE_VERSION" \
+    && git clone --depth 1 https://github.com/tpope/vim-fugitive --branch "$NVIM_FUGITIVE_VERSION" \
+    && git clone --depth 1 https://github.com/tpope/vim-surround \
+    && git clone --depth 1 https://github.com/vim-airline/vim-airline --branch "$NVIM_AIRLINE_VERSION" \
+    \
+    # Some Vim plugins have no release tags or very outdated latest versions.
+    && cd vim-gitgutter \
+        && git fetch --depth 1 . "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
+        && git reset "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
+    && cd ../vim-snippets \
+        && git fetch --depth 1 . "$NVIM_SNIPPETS_VERSION_COMMIT" \
+        && git reset "$NVIM_SNIPPETS_VERSION_COMMIT" \
+    && cd ../vim-surround \
+        && git fetch --depth 1 . "$NVIM_SURROUND_VERSION_COMMIT" \
+        && git reset "$NVIM_SURROUND_VERSION_COMMIT" \
 
 WORKDIR LanguageClient-neovim
 RUN ./install.sh

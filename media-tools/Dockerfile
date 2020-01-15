@@ -3,6 +3,8 @@ FROM debian:buster-slim
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 
+ENV YOUTUBE_DL_VERSION 2020.1.1
+
 RUN apt-get --yes update \
     && apt-get install --yes --no-install-recommends \
         ffmpeg \
@@ -24,7 +26,7 @@ USER user
 
 ENV PATH $PATH:/home/user/.local/bin
 
-RUN ["pip3", "install", "--user", "youtube_dl"]
+RUN pip3 install --user youtube_dl@"$YOUTUBE_DL_VERSION"
 
 RUN ["mkdir", "/home/user/work"]
 VOLUME /home/user/work

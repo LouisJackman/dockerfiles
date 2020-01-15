@@ -1,6 +1,7 @@
 FROM base-dev
 
-ENV RUST_VER 1.38.0
+ENV RUST_VERSION 1.38.0
+ENV RUST_VIM_VERSION_COMMIT 05f98470e55722aaf9b1a1ef1eb272f2d95e349d
 
 USER root
 
@@ -13,7 +14,7 @@ USER dev
 WORKDIR /home/dev
 
 RUN curl https://sh.rustup.rs -sSf \
-    | sh -s -- -y --default-toolchain "$RUST_VER"
+    | sh -s -- -y --default-toolchain "$RUST_VERSION"
 
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "rustfmt"]
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "clippy"]
@@ -24,12 +25,14 @@ RUN { \
     echo; \
 } >>~/.zshrc
 
-RUN [ \
-    "git", \
-    "clone", \
-    "https://github.com/rust-lang/rust.vim", \
-    "/home/dev/.local/share/nvim/site/pack/default/start/rust.vim" \
-]
+WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
+RUN git \
+        clone \
+        --depth 1 \
+        https://github.com/rust-lang/rust.vim \
+    && cd rust.vim \
+    && git fetch --depth 1 . "$RUST_VIM_VERSION_COMMIT" \
+    && git reset "$RUST_VIM_VERSION_COMMIT"
 
 COPY additional_plugins.vim /home/dev/.local/share/nvim/autoload/
 
