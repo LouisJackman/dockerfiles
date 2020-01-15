@@ -1,4 +1,4 @@
-FROM base-dev
+FROM debian:buster-slim
 
 USER root
 RUN apt-get --yes update \

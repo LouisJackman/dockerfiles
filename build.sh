@@ -13,7 +13,7 @@ build() (
 build base-dev
 for image in *
 do
-    if [ -d "$image" ] && [ "$image" != base-dev ]
+    if [ -d "$image" ] && [ base-dev != "$image" ]
     then
         build "$image" &
     fi

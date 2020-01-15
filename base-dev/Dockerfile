@@ -4,15 +4,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 
 ENV NEOVIM_VERSION 0.4.3
-ENV PYNVIM_VERSION 0.4.4
+ENV PYNVIM_VERSION 0.4.0
 
 ENV NVIM_DEOPLETE_VERSION 5.1
 ENV NVIM_LANGUAGE_CLIENT_VERSION 0.1.156
-ENV NVIM_GIT_GUTTER_VERSION_COMMIT 0946c53cfc6edfb8dbf4b25a27d013c0b6ec6619
+ENV NVIM_GIT_GUTTER_VERSION_COMMIT 9add23a492cba86df506db3be363c699f6c8d28e
 ENV NVIM_NORD_VIM_VERSION v0.13.0
 ENV NVIM_CTRL_P_VERSION 1.80
 ENV NVIM_ALE_VERSION v2.6.0
-ENV NVIM_SNIPPETS_VERSION_COMMIT 5279654b3e9fc280742d02c9509d4313d9da18e9
+ENV NVIM_SNIPPETS_VERSION_COMMIT 867f5cc995aec6c6f065d0ad76f5f0c914df4493
 ENV NVIM_TAGBAR_VERSION v2.7
 ENV NVIM_NERDTREE_VERSION 6.4.3
 ENV NVIM_FUGITIVE_VERSION v3.1
@@ -53,7 +53,7 @@ RUN ["rm", "/home/dev/.bash_logout", "/home/dev/.bashrc", "/home/dev/.profile"]
 COPY --chown=dev .zshrc /home/dev/
 COPY --chown=dev init.vim /home/dev/.config/nvim/
 
-RUN python3 -m pip install --user pynvim@"$PYNVIM_VERSION"
+RUN python3 -m pip install --user pynvim=="$PYNVIM_VERSION"
 
 RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/pack/default/start"]
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
@@ -79,7 +79,7 @@ RUN git clone --depth 1 https://github.com/Shougo/deoplete.nvim.git --branch "$N
         && git reset "$NVIM_SNIPPETS_VERSION_COMMIT" \
     && cd ../vim-surround \
         && git fetch --depth 1 . "$NVIM_SURROUND_VERSION_COMMIT" \
-        && git reset "$NVIM_SURROUND_VERSION_COMMIT" \
+        && git reset "$NVIM_SURROUND_VERSION_COMMIT"
 
 WORKDIR LanguageClient-neovim
 RUN ./install.sh

@@ -26,7 +26,7 @@ USER user
 
 ENV PATH $PATH:/home/user/.local/bin
 
-RUN pip3 install --user youtube_dl@"$YOUTUBE_DL_VERSION"
+RUN pip3 install --user youtube_dl=="$YOUTUBE_DL_VERSION"
 
 RUN ["mkdir", "/home/user/work"]
 VOLUME /home/user/work
