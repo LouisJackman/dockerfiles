@@ -5,6 +5,7 @@ ENV LANG C.UTF-8
 
 ENV NEOVIM_VERSION 0.4.3
 ENV PYNVIM_VERSION 0.4.0
+ENV PIP_WHEEL_VERSION 0.33.6
 
 ENV NVIM_DEOPLETE_VERSION 5.1
 ENV NVIM_LANGUAGE_CLIENT_VERSION 0.1.156
@@ -53,7 +54,9 @@ RUN ["rm", "/home/dev/.bash_logout", "/home/dev/.bashrc", "/home/dev/.profile"]
 COPY --chown=dev .zshrc /home/dev/
 COPY --chown=dev init.vim /home/dev/.config/nvim/
 
-RUN python3 -m pip install --user pynvim=="$PYNVIM_VERSION"
+ENV PATH "/home/dev/.local/bin:$PATH"
+RUN python3 -m pip install --user wheel=="$PIP_WHEEL_VERSION" \
+    && python3 -m pip install --user pynvim=="$PYNVIM_VERSION"
 
 RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/pack/default/start"]
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
