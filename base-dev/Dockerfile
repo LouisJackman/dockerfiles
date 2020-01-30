@@ -23,6 +23,7 @@ ENV NVIM_AIRLINE_VERSION v0.11
 RUN apt-get --yes update \
     && apt-get install --yes --no-install-recommends \
         ca-certificates \
+        cloc \
         curl \
         git \
         make \
