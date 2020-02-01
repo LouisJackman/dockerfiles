@@ -62,8 +62,8 @@ RUN python3 -m pip install --user wheel=="$PIP_WHEEL_VERSION" \
 RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/pack/default/start"]
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
 RUN git clone --depth 1 https://github.com/Shougo/deoplete.nvim.git --branch "$NVIM_DEOPLETE_VERSION" \
-    && git clone --depth 1 https://github.com/airblade/vim-gitgutter \
-    && git clone https://github.com/arcticicestudio/nord-vim --branch "$NVIM_NORD_VIM_VERSION" \
+    && git clone https://github.com/airblade/vim-gitgutter \
+    && git clone --depth 1 https://github.com/arcticicestudio/nord-vim --branch "$NVIM_NORD_VIM_VERSION" \
     && git clone --depth 1 https://github.com/autozimu/LanguageClient-neovim --branch "$NVIM_LANGUAGE_CLIENT_VERSION" \
     && git clone --depth 1 https://github.com/ctrlpvim/ctrlp.vim.git --branch "$NVIM_CTRL_P_VERSION" \
     && git clone --depth 1 https://github.com/dense-analysis/ale --branch "$NVIM_ALE_VERSION" \
