@@ -8,8 +8,8 @@ USER root
 
 # For cgo, and also to resolve this issue:
 # https://github.com/golang/go/issues/26988
-RUN apt-get --yes update \
-    && apt-get install --yes --no-install-recommends \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
        gcc \
        libc-dev \
     && rm -fr /var/lib/apt/lists/*

@@ -3,8 +3,8 @@ FROM base-dev
 ENV WABT_VERSION 1.0.12
 
 USER root
-RUN apt-get --yes update \
-    && apt-get install --yes --no-install-recommends clang cmake \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends clang cmake \
     && rm -fr /var/lib/apt/lists/*
 USER dev
 

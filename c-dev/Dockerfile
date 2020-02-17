@@ -1,8 +1,9 @@
 FROM base-dev
 
 USER root
-RUN apt-get --yes update \
-    && apt-get --yes --no-install-recommends install \
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get --yes --no-install-recommends install \
         build-essential \
         gdb \
         manpages \

@@ -1,6 +1,5 @@
 FROM debian:buster-slim
 
-ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 
 ENV NEOVIM_VERSION 0.4.3
@@ -20,8 +19,8 @@ ENV NVIM_FUGITIVE_VERSION v3.1
 ENV NVIM_SURROUND_VERSION_COMMIT f51a26d3710629d031806305b6c8727189cd1935
 ENV NVIM_AIRLINE_VERSION v0.11
 
-RUN apt-get --yes update \
-    && apt-get install --yes --no-install-recommends \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
         ca-certificates \
         cloc \
         curl \

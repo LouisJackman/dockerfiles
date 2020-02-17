@@ -1,12 +1,11 @@
 FROM debian:buster-slim
 
-ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
 
 ENV YOUTUBE_DL_VERSION 2020.1.1
 
-RUN apt-get --yes update \
-    && apt-get install --yes --no-install-recommends \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
         ffmpeg \
         flac \
         lame \

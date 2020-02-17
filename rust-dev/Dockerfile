@@ -7,8 +7,8 @@ USER root
 
 # Lynx is for browing Rust's documentation without needing to rummage through
 # the container's filesystem with the host's browser.
-RUN apt-get --yes update \
-    && apt-get install --yes --no-install-recommends build-essential lynx \
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends build-essential lynx \
     && rm -fr /var/lib/apt/lists/*
 
 USER dev

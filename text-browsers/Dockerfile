@@ -1,8 +1,9 @@
 FROM debian:buster-slim
 
 USER root
-RUN apt-get --yes update \
-    && apt-get --yes --no-install-recommends install \
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get --yes --no-install-recommends install \
         elinks \
         lynx \
         w3m \
