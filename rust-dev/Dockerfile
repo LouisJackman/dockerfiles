@@ -5,8 +5,10 @@ ENV RUST_VIM_VERSION_COMMIT db0137dfad4690621e01dbae780fb4a2dd7dbf27
 
 USER root
 
+# Lynx is for browing Rust's documentation without needing to rummage through
+# the container's filesystem with the host's browser.
 RUN apt-get --yes update \
-    && apt-get install --yes --no-install-recommends build-essential \
+    && apt-get install --yes --no-install-recommends build-essential lynx \
     && rm -fr /var/lib/apt/lists/*
 
 USER dev
