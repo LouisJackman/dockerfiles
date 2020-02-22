@@ -38,15 +38,15 @@ function! s:setup.BindKeys()
 
     let g:mapleader = ' '
 
-    noremap <leader>ev :edit $MYVIMRC<cr>
-    noremap <leader>sv :source $MYVIMRC<cr>
+    noremap <silent> <leader>ev :edit $MYVIMRC<cr>
+    noremap <silent> <leader>sv :source $MYVIMRC<cr>
 
     inoremap fd <esc>
     vnoremap fd <esc>
     inoremap <esc> <nop>
     vnoremap <esc> <nop>
 
-    noremap <leader>d :bdelete<cr>
+    noremap <silent> <leader>d :bdelete<cr>
     noremap <leader>c <c-w>c
 
     noremap <leader>h <c-w>h
@@ -64,29 +64,29 @@ function! s:setup.BindKeys()
     noremap <leader>- <c-w>-
     noremap <leader>= <c-w>=
 
-    noremap <leader>sp :set paste<cr>
-    noremap <leader>np :set nopaste<cr>
+    noremap <silent> <leader>sp :set paste<cr>
+    noremap <silent> <leader>np :set nopaste<cr>
 
-    noremap <leader>hl :set hlsearch<cr>
-    noremap <leader>nh :set nohlsearch<cr>
+    noremap <silent> <leader>hl :set hlsearch<cr>
+    noremap <silent> <leader>nh :set nohlsearch<cr>
 
-    noremap <leader>lo :lopen<cr>
-    noremap <leader>lc :lclose<cr>
-    noremap <leader>ln :lnext<cr>
-    noremap <leader>lp :lprevious<cr>
-    noremap <leader>lf :lfirst<cr>
-    noremap <leader>lla :llast<cr>
-    noremap <leader>lli :llist<cr>
+    noremap <silent> <leader>lo :lopen<cr>
+    noremap <silent> <leader>lc :lclose<cr>
+    noremap <silent> <leader>ln :lnext<cr>
+    noremap <silent> <leader>lp :lprevious<cr>
+    noremap <silent> <leader>lf :lfirst<cr>
+    noremap <silent> <leader>lla :llast<cr>
+    noremap <silent> <leader>lli :llist<cr>
 
-    noremap <leader>co :copen<cr>
-    noremap <leader>cc :cclose<cr>
-    noremap <leader>cn :cnext<cr>
-    noremap <leader>cp :cprevious<cr>
-    noremap <leader>cf :cfirst<cr>
-    noremap <leader>cla :clast<cr>
-    noremap <leader>cli :clist<cr>
+    noremap <silent> <leader>co :copen<cr>
+    noremap <silent> <leader>cc :cclose<cr>
+    noremap <silent> <leader>cn :cnext<cr>
+    noremap <silent> <leader>cp :cprevious<cr>
+    noremap <silent> <leader>cf :cfirst<cr>
+    noremap <silent> <leader>cla :clast<cr>
+    noremap <silent> <leader>cli :clist<cr>
 
-    noremap <leader>tn :tabnew<cr>
+    noremap <silent> <leader>tn :tabnew<cr>
 
     nnoremap n nzz
     nnoremap N Nzz
