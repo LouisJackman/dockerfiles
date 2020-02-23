@@ -15,11 +15,9 @@ RUN apt-get update \
         webp \
         x264 \
         x265 \
-        zsh \
     && rm -fr /var/lib/apt/lists/*
 
 RUN ["useradd", "-m", "user"]
-RUN ["chsh", "-s", "/usr/bin/zsh", "user"]
 
 USER user
 

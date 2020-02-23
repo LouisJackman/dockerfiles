@@ -25,7 +25,7 @@ RUN { \
     echo; \
     cat ~/.cargo/env; \
     echo; \
-} >>~/.zshrc
+} >>~/.bashrc
 
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
 RUN git clone https://github.com/rust-lang/rust.vim \

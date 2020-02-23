@@ -30,10 +30,7 @@ RUN apt-get update \
         python3 \
         python3-pip \
         python3-setuptools \
-        zsh \
     && rm -fr /var/lib/apt/lists/*
-
-SHELL ["/usr/bin/zsh", "-c"]
 
 WORKDIR /opt
 RUN curl \
@@ -44,14 +41,10 @@ RUN curl \
 ENV PATH "/opt/nvim-linux64/bin:$PATH"
 
 RUN ["useradd", "-m", "dev"]
-RUN ["chsh", "-s", "/usr/bin/zsh", "dev"]
 
 USER dev
 
-# Reduce shell configuration complexity by using zsh-style files exclusively.
-RUN ["rm", "/home/dev/.bash_logout", "/home/dev/.bashrc", "/home/dev/.profile"]
-
-COPY --chown=dev .zshrc /home/dev/
+COPY --chown=dev .bashrc /home/dev/
 COPY --chown=dev init.vim /home/dev/.config/nvim/
 
 ENV PATH "/home/dev/.local/bin:$PATH"
@@ -92,6 +85,4 @@ RUN [ \
 RUN ["mkdir", "/home/dev/src"]
 VOLUME /home/dev/src
 WORKDIR /home/dev/src
-
-ENTRYPOINT ["/usr/bin/zsh"]
 
