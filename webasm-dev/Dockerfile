@@ -4,7 +4,10 @@ ENV WABT_VERSION 1.0.12
 
 USER root
 RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends clang cmake \
+    && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
+        clang \
+        cmake \
+        python2.7-minimal \
     && rm -fr /var/lib/apt/lists/*
 USER dev
 
@@ -17,6 +20,7 @@ RUN git \
     --branch "$WABT_VERSION"
 
 WORKDIR /home/dev/wabt
+
 RUN ["make"]
 ENV PATH $PATH:/home/dev/wabt/bin
 
