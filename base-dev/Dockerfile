@@ -32,6 +32,8 @@ RUN apt-get update \
         python3-setuptools \
     && rm -fr /var/lib/apt/lists/*
 
+SHELL ["/bin/bash", "-c"]
+
 WORKDIR /opt
 RUN curl \
         -LSOfs \
