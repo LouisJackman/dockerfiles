@@ -3,10 +3,10 @@ FROM debian:buster-slim
 ENV LANG C.UTF-8
 
 ENV NEOVIM_VERSION 0.4.3
-ENV PYNVIM_VERSION 0.4.0
+ENV PYNVIM_VERSION 0.4.1
 ENV PIP_WHEEL_VERSION 0.33.6
 
-ENV NVIM_DEOPLETE_VERSION 5.1
+ENV NVIM_DEOPLETE_VERSION_COMMIT 08582f7c52aa53d63f9a7a714fab9137d6ea48f0
 ENV NVIM_LANGUAGE_CLIENT_VERSION 0.1.156
 ENV NVIM_GIT_GUTTER_VERSION_COMMIT 9add23a492cba86df506db3be363c699f6c8d28e
 ENV NVIM_NORD_VIM_VERSION v0.13.0
@@ -55,7 +55,7 @@ RUN python3 -m pip install --user wheel=="$PIP_WHEEL_VERSION" \
 
 RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/pack/default/start"]
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
-RUN git clone --depth 1 https://github.com/Shougo/deoplete.nvim.git --branch "$NVIM_DEOPLETE_VERSION" \
+RUN git clone https://github.com/Shougo/deoplete.nvim.git \
     && git clone https://github.com/airblade/vim-gitgutter \
     && git clone --depth 1 https://github.com/arcticicestudio/nord-vim --branch "$NVIM_NORD_VIM_VERSION" \
     && git clone --depth 1 https://github.com/autozimu/LanguageClient-neovim --branch "$NVIM_LANGUAGE_CLIENT_VERSION" \
@@ -68,8 +68,9 @@ RUN git clone --depth 1 https://github.com/Shougo/deoplete.nvim.git --branch "$N
     && git clone https://github.com/tpope/vim-surround \
     && git clone --depth 1 https://github.com/vim-airline/vim-airline --branch "$NVIM_AIRLINE_VERSION" \
     \
-    # Some Vim plugins have no release tags or very outdated latest versions.
-    && cd vim-gitgutter && git reset "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
+    # Some Vim plugins have no release tags or outdated latest versions.
+	&& cd deoplete.nvim && git reset "$NVIM_DEOPLETE_VERSION_COMMIT" \
+    && cd ../vim-gitgutter && git reset "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
     && cd ../vim-snippets && git reset "$NVIM_SNIPPETS_VERSION_COMMIT" \
     && cd ../vim-surround && git reset "$NVIM_SURROUND_VERSION_COMMIT"
 
