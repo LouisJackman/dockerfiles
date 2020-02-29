@@ -32,7 +32,7 @@ RUN git clone https://github.com/rust-lang/rust.vim \
     && cd rust.vim \
     && git reset "$RUST_VIM_VERSION_COMMIT"
 
-COPY additional_plugins.vim /home/dev/.config/nvim/autoload/
+COPY --chown dev:dev additional_plugins.vim /home/dev/.config/nvim/autoload/
 
 WORKDIR /home/dev/src
 
