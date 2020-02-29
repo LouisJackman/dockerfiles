@@ -34,7 +34,7 @@ RUN git clone https://github.com/pangloss/vim-javascript \
     && cd ../typescript-vim && git reset "$NVIM_TYPESCRIPT_VERSION_COMMIT" \
     && cd ../vim-tsx && git reset "$NVIM_TSX_VERSION_COMMIT"
 
-COPY --chown dev:dev additional_plugins.vim /home/dev/.local/share/nvim/autoload/
+COPY --chown=dev:dev additional_plugins.vim /home/dev/.local/share/nvim/autoload/
 
 WORKDIR /home/dev/src
 
