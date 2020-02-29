@@ -3,7 +3,7 @@ syntax off
 
 let s:setup = {}
 
-function! s:setup.SetOptions()
+function! s:setup.SetOptions() abort
     set cursorline
     set expandtab
     set guicursor
@@ -27,12 +27,12 @@ function! s:setup.SetOptions()
     set wrap
 endfunction
 
-function! s:setup.LockDownModeline()
+function! s:setup.LockDownModeline() abort
     set nomodeline
     set modelines=0
 endfunction
 
-function! s:setup.BindKeys()
+function! s:setup.BindKeys() abort
     " Keybindings here are solely for ergonomics and should not otherwise work
     " against Vim conventions.
 
@@ -96,7 +96,7 @@ function! s:setup.BindKeys()
     nnoremap g# g#zz
 endfunction
 
-function! s:setup.SetupBasePlugins()
+function! s:setup.SetupBasePlugins() abort
     let g:ctrlp_map = '<c-p>'
 
     let g:ctrlp_custom_ignore = '\v[\/](.venv|node_modules|vendor|target|dist)|(\.(swp|ico|git|svn))$'
@@ -117,14 +117,14 @@ function! s:setup.SetupBasePlugins()
     let g:deoplete#enable_at_startup = 1
 endfunction
 
-function! s:setup.SetupAdditionalPlugins()
-    let l:vimpath = expand("~/.local/share/nvim/autoload/additional_plugins.vim")
+function! s:setup.SetupAdditionalPlugins() abort
+    let l:vimpath = expand("~/.config/nvim/autoload/additional_plugins.vim")
     if filereadable(vimpath)
         call additional_plugins#Setup()
     endif
 endfunction
 
-function! s:setup.Setup() dict
+function! s:setup.Setup() abort dict
     call self.SetOptions()
     call self.LockDownModeline()
     call self.BindKeys()

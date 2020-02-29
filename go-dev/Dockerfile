@@ -27,6 +27,8 @@ RUN curl -LSOs https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
 
 ENV PATH $PATH:/opt/go/bin:/home/dev/go/bin
 
+COPY additional_plugins.vim /home/dev/.config/nvim/autoload/
+
 RUN ["go", "get", "-v", "golang.org/x/tools/cmd/godoc"]
 
 WORKDIR /home/dev
