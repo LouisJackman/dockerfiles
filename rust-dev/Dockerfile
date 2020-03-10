@@ -20,6 +20,7 @@ RUN curl https://sh.rustup.rs -sSf \
 
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "rustfmt"]
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "clippy"]
+RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "rust-src"]
 
 RUN { \
     echo; \
