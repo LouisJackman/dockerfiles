@@ -2,6 +2,7 @@ FROM base-dev
 
 ENV RUST_VERSION 1.42.0
 ENV RUST_VIM_VERSION_COMMIT db0137dfad4690621e01dbae780fb4a2dd7dbf27
+ENV RUST_ANALYZER_VERSION 2020-04-27
 
 USER root
 
@@ -18,15 +19,20 @@ WORKDIR /home/dev
 RUN curl https://sh.rustup.rs -sSf \
     | sh -s -- -y --default-toolchain "$RUST_VERSION"
 
+RUN curl \
+    -LSfs "https://github.com/rust-analyzer/rust-analyzer/releases/download/$RUST_ANALYZER_VERSION/rust-analyzer-linux" \
+    -o ~/.local/bin/rust-analyzer
+RUN ["chmod", "+x", "/home/dev/.local/bin/rust-analyzer"]
+
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "rustfmt"]
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "clippy"]
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "rust-src"]
 
 RUN { \
-    echo; \
-    cat ~/.cargo/env; \
-    echo; \
-} >>~/.bashrc
+        echo; \
+        cat ~/.cargo/env; \
+        echo; \
+    } >>~/.bashrc
 
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
 RUN git clone https://github.com/rust-lang/rust.vim \
