@@ -13,6 +13,7 @@ function! s:setup.SetOptions() abort
     set nobackup
     set noswapfile
     set nowritebackup
+    set number
     set path+=**
     set scrolloff=5
     set shiftwidth=4
