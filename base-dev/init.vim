@@ -1,5 +1,5 @@
 filetype plugin on
-syntax off
+syntax on
 
 let s:setup = {}
 
