@@ -6,7 +6,6 @@ let s:setup = {}
 function! s:setup.SetOptions() abort
     set cursorline
     set expandtab
-    set guicursor
     set hidden
     set hlsearch
     set incsearch
