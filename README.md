@@ -10,3 +10,8 @@ They are run locally, not being pushed anywhere. `base-dev` must therefore be
 built locally before building dependent images. Thankfully, `build.sh` can do
 all of this for you.
 
+This repository is hosted [on
+GitLab.com](https://gitlab.com/louis.jackman/dockerfiles). If you're
+seeing this on GitHub, you're on the official GitHub mirror. [Go to
+GitLab](https://gitlab.com/louis.jackman/dockerfiles) to contribute.
+
