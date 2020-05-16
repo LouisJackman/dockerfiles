@@ -96,6 +96,14 @@ function! s:setup.BindKeys() abort
     nnoremap g# g#zz
 endfunction
 
+function! s:setup.SetupStandardLanguages() abort
+    augroup filetype yaml
+        set tabstop=2
+        set shiftwidth=2
+        set softtabstop=2
+    augroup END
+endfunction
+
 function! s:setup.SetupBasePlugins() abort
     let g:ctrlp_map = '<c-p>'
 
@@ -128,6 +136,7 @@ function! s:setup.Setup() abort dict
     call self.SetOptions()
     call self.LockDownModeline()
     call self.BindKeys()
+    call self.SetupStandardLanguages()
     call self.SetupBasePlugins()
     call self.SetupAdditionalPlugins()
 endfunction
