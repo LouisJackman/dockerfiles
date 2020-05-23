@@ -107,7 +107,7 @@ endfunction
 function! s:setup.SetupBasePlugins() abort
     let g:ctrlp_map = '<c-p>'
 
-    let g:ctrlp_custom_ignore = '\v[\/](.venv|node_modules|vendor|target|dist)|(\.(swp|ico|git|svn))$'
+    let g:ctrlp_custom_ignore = '\v[\/](.venv|node_modules|vendor|target|dist|build)|(\.(swp|ico|git|svn))$'
 
     colorscheme nord
 
