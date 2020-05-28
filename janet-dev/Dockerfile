@@ -34,8 +34,7 @@ USER dev
 
 WORKDIR /home/dev
 
-RUN git \
-    clone \
+RUN git clone \
     --depth 1 \
     https://github.com/janet-lang/janet.vim \
     /home/dev/.local/share/nvim/site/pack/default/start/janet.vim \
