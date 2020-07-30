@@ -11,18 +11,18 @@ set -o errexit
 set -o nounset
 
 export PYNVIM_VERSION=0.4.1
-export PIP_WHEEL_VERSION=0.33.6
+export PIP_WHEEL_VERSION=0.34.2
 
-export NVIM_DEOPLETE_VERSION_COMMIT=08582f7c52aa53d63f9a7a714fab9137d6ea48f0
-export NVIM_LANGUAGE_CLIENT_VERSION=0.1.156
-export NVIM_GIT_GUTTER_VERSION_COMMIT=9add23a492cba86df506db3be363c699f6c8d28e
-export NVIM_NORD_VIM_VERSION=v0.13.0
+export NVIM_DEOPLETE_VERSION_COMMIT=fb4a0436437999d245c5f747621352307ab073a0
+export NVIM_LANGUAGE_CLIENT_VERSION=0.1.157
+export NVIM_GIT_GUTTER_VERSION_COMMIT=c27bfab8c51e77419ee0c4a9c4e3ba359dbc2ad4
+export NVIM_NORD_VIM_VERSION=v0.14.0
 export NVIM_CTRL_P_VERSION=1.80
-export NVIM_ALE_VERSION=v2.6.0
-export NVIM_SNIPPETS_VERSION_COMMIT=867f5cc995aec6c6f065d0ad76f5f0c914df4493
-export NVIM_TAGBAR_VERSION=v2.7
-export NVIM_NERDTREE_VERSION=6.4.3
-export NVIM_FUGITIVE_VERSION=v3.1
+export NVIM_ALE_VERSION=v2.7.0
+export NVIM_SNIPPETS_VERSION_COMMIT=900bf93c6680e38ce568dba26c3f48b4365ac730
+export NVIM_TAGBAR_VERSION_COMMIT=d7063c7484f0f99bfa182b02defef7f412a9289c
+export NVIM_NERDTREE_VERSION=6.9.0
+export NVIM_FUGITIVE_VERSION=v3.2
 export NVIM_SURROUND_VERSION_COMMIT=f51a26d3710629d031806305b6c8727189cd1935
 export NVIM_AIRLINE_VERSION=v0.11
 
@@ -52,13 +52,14 @@ then
         && git clone --depth 1 https://github.com/ctrlpvim/ctrlp.vim.git --branch "$NVIM_CTRL_P_VERSION" \
         && git clone --depth 1 https://github.com/dense-analysis/ale --branch "$NVIM_ALE_VERSION" \
         && git clone https://github.com/honza/vim-snippets \
-        && git clone --depth 1 https://github.com/majutsushi/tagbar --branch "$NVIM_TAGBAR_VERSION" \
+        && git clone https://github.com/majutsushi/tagbar \
         && git clone --depth 1 https://github.com/preservim/nerdtree.git --branch "$NVIM_NERDTREE_VERSION" \
         && git clone --depth 1 https://github.com/tpope/vim-fugitive --branch "$NVIM_FUGITIVE_VERSION" \
         && git clone https://github.com/tpope/vim-surround \
         && git clone --depth 1 https://github.com/vim-airline/vim-airline --branch "$NVIM_AIRLINE_VERSION" \
         \
         && cd deoplete.nvim && git reset "$NVIM_DEOPLETE_VERSION_COMMIT" \
+        && cd ../tagbar && git reset "$NVIM_TAGBAR_VERSION_COMMIT" \
         && cd ../vim-gitgutter && git reset "$NVIM_GIT_GUTTER_VERSION_COMMIT" \
         && cd ../vim-snippets && git reset "$NVIM_SNIPPETS_VERSION_COMMIT" \
         && cd ../vim-surround && git reset "$NVIM_SURROUND_VERSION_COMMIT" \
