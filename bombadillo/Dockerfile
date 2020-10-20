@@ -1,17 +1,17 @@
 FROM debian:buster-slim
 
-ENV BOMBADILLO_VERSION 2.3.0
-ENV BOMBADILLO_SHA512_SUM 4a8bb3dfae7536052629e41c389383e6608656de9094f0022093c4d0c42be3b512218516c42da5d3d85dacdfba44e0fd6b839400aed1713c0f37051f89b4e9b4
+ENV BOMBADILLO_VERSION 2.3.1
+ENV BOMBADILLO_SHA512_SUM 77acb558a62bf66c8e47be640c4016bb8c72c0096e98c68406d45ba9111e08f60b0d8be27d557caeb953d6d5a3c51cb9d552f7b25a43ff78758424faad423cc2
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update --yes \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
-        curl \
-        unzip \
+    ca-certificates \
+    curl \
+    unzip \
     && rm -fr /var/lib/apt/lists/*
 
 WORKDIR /opt
-
-RUN curl -OLf http://bombadillo.colorfield.space/binaries/bombadillo-${BOMBADILLO_VERSION}_linux_64.zip
+RUN curl -OLf https://bombadillo.colorfield.space/binaries/bombadillo-${BOMBADILLO_VERSION}_linux_64.zip
 
 RUN echo "$BOMBADILLO_SHA512_SUM bombadillo-${BOMBADILLO_VERSION}_linux_64.zip" \
     | sha512sum -c -
