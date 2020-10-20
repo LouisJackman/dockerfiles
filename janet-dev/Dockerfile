@@ -1,16 +1,16 @@
 FROM base-dev
 
-ENV JANET_VIM_VERSION_COMMIT adb013743dd48f725083d16ccb164291e1d2569d
+ENV JANET_VIM_VERSION_COMMIT 1d616c0169138a017f245c104565bd25b079c8f0
 
 USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update --yes \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
-		gcc \
-		libc6-dev \
-		git \
-		make \
-		&& rm -fr /var/lib/apt/lists/*
+    gcc \
+    libc6-dev \
+    git \
+    make \
+    && rm -fr /var/lib/apt/lists/*
 
 WORKDIR /opt
 
