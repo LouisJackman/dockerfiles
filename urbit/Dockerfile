@@ -7,11 +7,11 @@ USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --yes \
-        ca-certificates \
-        curl \
-        file \
-        tree \
-        vim.tiny \
+    ca-certificates \
+    curl \
+    file \
+    tree \
+    vim.tiny \
     && rm -fr /var/lib/apt/lists/*
 
 USER dev
@@ -23,7 +23,6 @@ RUN curl -O "https://bootstrap.urbit.org/urbit-v${URBIT_VERSION}-linux64.tgz" \
     && rm "urbit-v${URBIT_VERSION}-linux64.tgz"
 
 RUN git clone \
-    --depth 1 \
     https://github.com/urbit/hoon.vim \
     /home/dev/.local/share/nvim/site/pack/default/start/hoon.vim \
     && cd /home/dev/.local/share/nvim/site/pack/default/start/hoon.vim \
