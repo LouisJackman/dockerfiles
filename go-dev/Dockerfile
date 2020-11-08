@@ -1,8 +1,8 @@
 FROM base-dev
 
-ENV GO_VERSION 1.14
-ENV GO_SHA_SUM 08df79b46b0adf498ea9f320a0f23d6ec59e9003660b4c9c1ce8e5e2c6f823ca
-ENV VIM_GO_VERSION v1.22
+ENV GO_VERSION=1.14
+ENV GO_SHA_SUM=08df79b46b0adf498ea9f320a0f23d6ec59e9003660b4c9c1ce8e5e2c6f823ca
+ENV VIM_GO_VERSION=v1.22
 
 USER root
 
@@ -25,7 +25,7 @@ RUN curl -LSOs https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
     && tar -xzf go${GO_VERSION}.linux-amd64.tar.gz \
     && rm go${GO_VERSION}.linux-amd64.tar.gz
 
-ENV PATH $PATH:/opt/go/bin:/home/dev/go/bin
+ENV PATH=$PATH:/opt/go/bin:/home/dev/go/bin
 
 COPY --chown=dev:dev additional_plugins.vim /home/dev/.config/nvim/autoload/
 

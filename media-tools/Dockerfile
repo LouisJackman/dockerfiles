@@ -1,8 +1,8 @@
 FROM debian:buster-20201012-slim
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
-ENV YOUTUBE_DL_VERSION 2020.1.1
+ENV YOUTUBE_DL_VERSION=2020.1.1
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
@@ -21,7 +21,7 @@ RUN ["useradd", "-m", "user"]
 
 USER user
 
-ENV PATH $PATH:/home/user/.local/bin
+ENV PATH=$PATH:/home/user/.local/bin
 
 RUN pip3 install --user youtube_dl=="$YOUTUBE_DL_VERSION"
 

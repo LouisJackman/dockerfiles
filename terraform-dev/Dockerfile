@@ -1,7 +1,7 @@
 FROM base-dev
 
-ENV TERRAFORM_VERSION 0.12.23
-ENV VIM_TERRAFORM_VERSION_COMMIT 89c47c6c68f6260ba34ee0733437d863046fbe95
+ENV TERRAFORM_VERSION=0.12.23
+ENV VIM_TERRAFORM_VERSION_COMMIT=89c47c6c68f6260ba34ee0733437d863046fbe95
 
 USER root
 
@@ -19,7 +19,7 @@ RUN curl -LSOfs "https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/ter
     && unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
     && rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 
-ENV PATH $PATH:/opt
+ENV PATH=$PATH:/opt
 
 
 COPY --chown=dev:dev additional_plugins.vim /home/dev/.config/nvim/autoload/

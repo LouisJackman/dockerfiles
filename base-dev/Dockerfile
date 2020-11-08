@@ -1,6 +1,6 @@
 FROM debian:buster-20201012-slim
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 ENV NEOVIM_VERSION=0.4.3
 
 RUN apt-get update \
@@ -24,7 +24,7 @@ RUN curl \
         "https://github.com/neovim/neovim/releases/download/v$NEOVIM_VERSION/nvim-linux64.tar.gz" \
     && tar -xzf nvim-linux64.tar.gz \
     && rm nvim-linux64.tar.gz
-ENV PATH "/opt/nvim-linux64/bin:$PATH"
+ENV PATH=/opt/nvim-linux64/bin:$PATH
 
 RUN ["useradd", "-m", "dev"]
 
@@ -36,7 +36,7 @@ COPY --chown=dev init.vim /home/dev/.config/nvim/
 COPY --chown=dev scripts/configure-nvim.sh /home/dev
 RUN sh /home/dev/configure-nvim.sh && rm /home/dev/configure-nvim.sh
 
-ENV PATH "/home/dev/.local/bin:$PATH"
+ENV PATH=/home/dev/.local/bin:$PATH
 
 RUN ["mkdir", "/home/dev/src"]
 VOLUME /home/dev/src

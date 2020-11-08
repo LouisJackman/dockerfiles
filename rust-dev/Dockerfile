@@ -1,8 +1,8 @@
 FROM base-dev
 
-ENV RUST_VERSION 1.44.1
-ENV RUST_VIM_VERSION_COMMIT 0d8ce07aaa3b95e61bf319b25bb3b1a4ecc780c2
-ENV RUST_ANALYZER_VERSION 2020-06-22
+ENV RUST_VERSION=1.44.1
+ENV RUST_VIM_VERSION_COMMIT=0d8ce07aaa3b95e61bf319b25bb3b1a4ecc780c2
+ENV RUST_ANALYZER_VERSION=2020-06-22
 
 USER root
 
@@ -43,5 +43,5 @@ COPY --chown=dev:dev additional_plugins.vim /home/dev/.config/nvim/autoload/
 
 WORKDIR /home/dev/src
 
-ENV USER dev
+ENV USER=dev
 

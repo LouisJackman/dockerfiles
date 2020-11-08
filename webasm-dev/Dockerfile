@@ -1,6 +1,6 @@
 FROM base-dev
 
-ENV WABT_VERSION 1.0.12
+ENV WABT_VERSION=1.0.12
 
 USER root
 RUN apt-get update \
@@ -22,7 +22,7 @@ RUN git \
 WORKDIR /home/dev/wabt
 
 RUN ["make"]
-ENV PATH $PATH:/home/dev/wabt/bin
+ENV PATH=$PATH:/home/dev/wabt/bin
 
 WORKDIR /home/dev/src
 
