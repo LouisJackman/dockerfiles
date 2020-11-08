@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster-20201012-slim
 
 ENV LANG C.UTF-8
 ENV NEOVIM_VERSION=0.4.3

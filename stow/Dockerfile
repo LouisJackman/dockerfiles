@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster-20201012-slim
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends stow \

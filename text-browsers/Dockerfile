@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster-20201012-slim
 
 USER root
 
