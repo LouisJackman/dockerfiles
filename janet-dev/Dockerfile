@@ -18,7 +18,6 @@ RUN chown dev:dev /opt
 
 USER dev
 
-# Always pull latest master with full history.
 RUN git clone --depth 1 https://github.com/janet-lang/janet
 
 WORKDIR /opt/janet
