@@ -9,11 +9,17 @@ USER root
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
        lua"$LUA_VERSION" \
-       luarocks \
        luajit \
+       luarocks \
+       rlwrap \
     && rm -fr /var/lib/apt/lists/*
 
 USER dev
+
+RUN { \
+    echo "alias lua='rlwrap lua'"; \
+    echo "alias luajit='rlwrap luajit'"; \
+  } >>~/.bashrc
 
 WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
 
