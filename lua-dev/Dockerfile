@@ -17,6 +17,7 @@ RUN apt-get update \
 USER dev
 
 RUN { \
+    echo; \
     echo "alias lua='rlwrap lua'"; \
     echo "alias luajit='rlwrap luajit'"; \
   } >>~/.bashrc
