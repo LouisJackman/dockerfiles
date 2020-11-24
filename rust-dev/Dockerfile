@@ -1,7 +1,6 @@
 FROM base-dev
 
 ENV RUST_VERSION=1.44.1
-ENV RUST_VIM_VERSION_COMMIT=0d8ce07aaa3b95e61bf319b25bb3b1a4ecc780c2
 ENV RUST_ANALYZER_VERSION=2020-06-22
 
 USER root
@@ -20,9 +19,10 @@ RUN curl https://sh.rustup.rs -sSf \
     | sh -s -- -y --default-toolchain "$RUST_VERSION"
 
 RUN curl \
+    --create-dirs \
     -LSfs "https://github.com/rust-analyzer/rust-analyzer/releases/download/$RUST_ANALYZER_VERSION/rust-analyzer-linux" \
-    -o ~/.local/bin/rust-analyzer
-RUN ["chmod", "+x", "/home/dev/.local/bin/rust-analyzer"]
+    -o ~/.config/coc/extensions/coc-rust-analyzer-data/rust-analyzer
+RUN ["chmod", "+x", "/home/dev/.config/coc/extensions/coc-rust-analyzer-data/rust-analyzer"]
 
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "rustfmt"]
 RUN ["/home/dev/.cargo/bin/rustup", "component", "add", "clippy"]
@@ -34,12 +34,9 @@ RUN { \
         echo; \
     } >>~/.bashrc
 
-WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
-RUN git clone https://github.com/rust-lang/rust.vim \
-    && cd rust.vim \
-    && git reset "$RUST_VIM_VERSION_COMMIT"
-
 COPY --chown=dev:dev additional_plugins.vim /home/dev/.config/nvim/autoload/
+
+RUN IS_INITIAL_NVIM_HEADLESS_INSTALL=1 nvim --headless +'CocInstall -sync coc-rust-analyzer' +quitall
 
 WORKDIR /home/dev/src
 

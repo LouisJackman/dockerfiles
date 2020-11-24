@@ -2,7 +2,6 @@ FROM base-dev
 
 ENV GO_VERSION=1.14
 ENV GO_SHA_SUM=08df79b46b0adf498ea9f320a0f23d6ec59e9003660b4c9c1ce8e5e2c6f823ca
-ENV VIM_GO_VERSION=v1.22
 
 USER root
 
@@ -33,12 +32,7 @@ RUN ["go", "get", "-v", "golang.org/x/tools/cmd/godoc"]
 
 WORKDIR /home/dev
 
-RUN git \
-    clone \
-    --depth 1 \
-    https://github.com/fatih/vim-go.git \
-    /home/dev/.local/share/nvim/site/pack/default/start/vim-go \
-    --branch "$VIM_GO_VERSION"
+RUN IS_INITIAL_NVIM_HEADLESS_INSTALL=1 nvim --headless +'CocInstall -sync coc-go' +quitall
 
 RUN [ \
     "nvim", \

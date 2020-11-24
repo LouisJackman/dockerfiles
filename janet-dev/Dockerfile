@@ -1,7 +1,5 @@
 FROM base-dev
 
-ENV JANET_VIM_VERSION_COMMIT=1d616c0169138a017f245c104565bd25b079c8f0
-
 USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update --yes \
@@ -31,13 +29,7 @@ RUN ["make", "install"]
 
 USER dev
 
-WORKDIR /home/dev
-
-RUN git clone \
-    https://github.com/janet-lang/janet.vim \
-    /home/dev/.local/share/nvim/site/pack/default/start/janet.vim \
-    && cd /home/dev/.local/share/nvim/site/pack/default/start/janet.vim \
-    && git reset "$JANET_VIM_VERSION_COMMIT"
+RUN IS_INITIAL_NVIM_HEADLESS_INSTALL=1 nvim --headless +quitall
 
 WORKDIR /home/dev/src
 

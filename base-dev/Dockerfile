@@ -46,8 +46,19 @@ ENV NPM_PACKAGES="$HOME/.npm-packages"
 ENV PATH="$PATH:$NPM_PACKAGES/bin"
 ENV MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
 
+RUN [ \
+    "npm", \
+    "install", \
+    "--global", \
+    "markdownlint@0.21.1", \
+    "bash-language-server@1.17.0", \
+    "dockerfile-language-server-nodejs@0.1.1" \
+  ]
+
 COPY --chown=dev .bashrc /home/dev/
 COPY --chown=dev init.vim /home/dev/.config/nvim/
+
+RUN ["mkdir", "-p", "/home/dev/.local/share/nvim/site/plugin"]
 
 WORKDIR /home/dev
 

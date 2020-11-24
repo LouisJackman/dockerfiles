@@ -1,7 +1,6 @@
 FROM base-dev
 
 ENV TERRAFORM_VERSION=0.12.23
-ENV VIM_TERRAFORM_VERSION_COMMIT=89c47c6c68f6260ba34ee0733437d863046fbe95
 
 USER root
 
@@ -24,12 +23,7 @@ ENV PATH=$PATH:/opt
 
 COPY --chown=dev:dev additional_plugins.vim /home/dev/.config/nvim/autoload/
 
-WORKDIR /home/dev/.local/share/nvim/site/pack/default/start
-RUN git \
-    clone \
-    https://github.com/hashivim/vim-terraform.git \
-    && cd vim-terraform \
-    && git reset "$VIM_TERRAFORM_VERSION_COMMIT"
+RUN IS_INITIAL_NVIM_HEADLESS_INSTALL=1 nvim --headless +quitall
 
 WORKDIR /home/dev/src
 

@@ -30,5 +30,5 @@ python3 -m pip install --user pynvim=="$PYNVIM_VERSION"
 curl -Lfo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-IS_INITIAL_NVIM_HEADLESS_INSTALL=1 nvim --headless +UpdateRemotePlugins -c 'CocInstall -sync coc-dictionary coc-emoji coc-explorer coc-highlight coc-json coc-omni coc-pairs coc-snippets coc-tag coc-yaml' +quitall
+IS_INITIAL_NVIM_HEADLESS_INSTALL=1 nvim --headless +UpdateRemotePlugins +'CocInstall -sync coc-actions coc-dictionary coc-emoji coc-explorer coc-git coc-highlight coc-json coc-omni coc-markdownlint coc-pairs coc-sh coc-snippets coc-spell-checker coc-tag coc-vimlsp coc-yaml' +quitall
 
