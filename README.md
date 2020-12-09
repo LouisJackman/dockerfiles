@@ -11,8 +11,9 @@ built locally before building dependent images. Thankfully, `build.sh` can do
 all of this for you. By default, it will skip images that already exist. To
 build them regardless, pass `--rebuild` to the script.
 
-This repository is hosted [on
-GitLab.com](https://gitlab.com/louis.jackman/dockerfiles). If you're
-seeing this on GitHub, you're on the official GitHub mirror. [Go to
-GitLab](https://gitlab.com/louis.jackman/dockerfiles) to contribute.
+This repository is currently hosted [on
+GitLab.com](https://gitlab.com/louis.jackman/dockerfiles). Official mirrors
+exist on [SourceHut](https://git.sr.ht/~louisjackman/dockerfiles) and
+[GitHub](https://github.com/LouisJackman/dockerfiles). At the moment, GitLab
+is still the official hub for contributions such as PRs and issues.
 
