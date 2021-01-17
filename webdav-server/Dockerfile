@@ -1,4 +1,4 @@
-FROM debian:buster-20201012-slim
+FROM debian:bullseye-20210111-slim
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
         && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
