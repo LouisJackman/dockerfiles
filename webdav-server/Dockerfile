@@ -22,8 +22,12 @@ RUN rm /etc/nginx/sites-available/* \
 
 COPY nginx.conf /etc/nginx/sites-available/webdav.conf
 
+VOLUME /etc/ssl/certs/webdav-server.crt
+VOLUME /etc/ssl/private/webdav-server.key
+VOLUME /etc/ssl/webdav-server-diffie-hellman-ephemeral-parameters.pem
+
 VOLUME /var/webdav
-EXPOSE 80
+EXPOSE 443
 STOPSIGNAL SIGTERM
 
 CMD ["-g", "daemon off;"]
