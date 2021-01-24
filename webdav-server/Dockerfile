@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 
 ARG WEBDAV_PASS
 
-RUN echo "$WEBDAV_PASS" | htpasswd -c -i /etc/nginx/.htpasswd user
+RUN test -n "$WEBDAV_PASS" && { echo "$WEBDAV_PASS" | htpasswd -c -i /etc/nginx/.htpasswd user; }
 
 RUN mkdir /var/webdav \
     && chown www-data:www-data /var/webdav \
