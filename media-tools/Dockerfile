@@ -1,8 +1,8 @@
-FROM debian:buster-20201012-slim
+FROM debian:bullseye-20210111-slim
 
 ENV LANG=C.UTF-8
 
-ENV YOUTUBE_DL_VERSION=2020.1.1
+ENV YOUTUBE_DL_VERSION=2021.2.4.1
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
