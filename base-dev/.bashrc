@@ -5,7 +5,7 @@ setup_bash() {
 
     export PS1='[\u@\h \W]\$ '
 
-    PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH"
+    PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 }
 
 setup_editor() {
