@@ -24,3 +24,5 @@ USER dev
 
 RUN true && { echo && echo 'eval "$(fastly --completion-script-bash)"'; } >>~/.bashrc
 
+WORKDIR /home/dev/src
+
