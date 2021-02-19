@@ -43,10 +43,11 @@ build() (
 build base-dev
 for image in *
 do
-    if [ -d "$image" ] && [ base-dev != "$image" ]
+    if [ -d "$image" ] && [ base-dev != "$image" ] && [ fastly-compute-edge-dev != "$image" ]
     then
         build "$image" &
     fi
 done
 wait
+build fastly-compute-edge-dev
 
