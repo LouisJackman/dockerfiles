@@ -13,7 +13,7 @@ services:
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-      - '/etc/ssl/private/pihole-server.pem:/etc/ssl/private/pihole-server.pem'
+      - '/etc/ssl/private/pihole-server.pem:/etc/ssl/private/pihole-server.pem:ro'
     restart: unless-stopped
     network_mode: host
 

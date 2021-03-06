@@ -6,8 +6,8 @@ services:
       - '4443:443'
     volumes:
       - 'webdav-server:/var/webdav'
-      - '/etc/ssl/certs/webdav-server.crt:/etc/ssl/certs/webdav-server.crt'
-      - '/etc/ssl/private/webdav-server.key:/etc/ssl/private/webdav-server.key'
-      - '/etc/ssl/webdav-server-diffie-hellman-ephemeral-parameters.pem:/etc/ssl/webdav-server-diffie-hellman-ephemeral-parameters.pem'
+      - '/etc/ssl/certs/webdav-server.crt:/etc/ssl/certs/webdav-server.crt:ro'
+      - '/etc/ssl/private/webdav-server.key:/etc/ssl/private/webdav-server.key:ro'
+      - '/etc/ssl/webdav-server-diffie-hellman-ephemeral-parameters.pem:/etc/ssl/webdav-server-diffie-hellman-ephemeral-parameters.pem:ro'
 volumes:
   webdav-server:
