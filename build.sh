@@ -30,13 +30,16 @@ build() (
     env=$1
     shift
 
-    if [ -n "$rebuild" ] || {
-        printf "%s" "$images" | grep "^${env}\$" >/dev/null
-        [ "$?" -ne 0 ]
-    }
+    if [ -f "$env/Dockerfile" ]
     then
-        cd "$env"
-        docker build -t "$env" .
+        if [ -n "$rebuild" ] || {
+            printf "%s" "$images" | grep "^${env}\$" >/dev/null
+            [ "$?" -ne 0 ]
+        }
+        then
+            cd "$env"
+            docker build -t "$env" .
+        fi
     fi
 )
 
