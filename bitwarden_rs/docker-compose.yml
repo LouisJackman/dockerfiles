@@ -9,6 +9,7 @@ services:
       - '/etc/ssl/certs/bitwarden_rs.crt:/etc/ssl/certs/bitwarden_rs.crt:ro'
       - '/etc/ssl/private/home-server.key:/etc/ssl/private/home-server.key:ro'
     environment:
+      # DOMAIN: 127.0.0.1
       ROCKET_TLS: '{certs="/etc/ssl/certs/bitwarden_rs.crt",key="/etc/ssl/private/home-server.key"}'
       SIGNUPS_ALLOWED: 'false'
       INVITATIONS_ALLOWED: 'false'
