@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  webdav-server:
+    image: bitwardenrs/server:1.19.0
+    ports:
+      - '8443:80'
+    volumes:
+      - 'bw-data:/data/'
+      - '/etc/ssl/certs/bitwarden_rs.crt:/etc/ssl/certs/bitwarden_rs.crt:ro'
+      - '/etc/ssl/private/home-server.key:/etc/ssl/private/home-server.key:ro'
+    environment:
+      ROCKET_TLS: '{certs="/etc/ssl/certs/bitwarden_rs.crt",key="/etc/ssl/private/home-server.key"}'
+      SIGNUPS_ALLOWED: 'false'
+      INVITATIONS_ALLOWED: 'false'
+      SHOW_PASSWORD_HINT: 'false'
+volumes:
+  bw-data:
