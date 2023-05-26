@@ -1,0 +1,23 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+build:
+  image: docker:23.0.3
+  stage: build
+
+  # The Neovim build can often take a long time when emulating ARM64 via QEMU.
+  timeout: 3h
+
+  services:
+    - docker:23.0.3-dind
+  before_script:
+    - apk add --no-cache curl ca-certificates python3 make
+    - update-ca-certificates
+    - mkdir -p ~/.docker/cli-plugins
+    - BUILDKIT_VERSION=0.10.4 && curl -LSfs --output ~/.docker/cli-plugins/docker-buildx "https://github.com/docker/buildx/releases/download/v$BUILDKIT_VERSION/buildx-v$BUILDKIT_VERSION.linux-amd64"
+    - chmod ug+rx ~/.docker/cli-plugins/docker-buildx
+    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker buildx create --use
+    - make publish

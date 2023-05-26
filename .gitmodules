@@ -1,0 +1,6 @@
+[submodule "contexts/03-base-dev/toolbag"]
+	path = contexts/03-base-dev/toolbag
+	url = https://github.com/LouisJackman/toolbag.git
+[submodule "contexts/02-nvim-config/neovim-config"]
+	path = contexts/02-nvim-config/neovim-config
+	url = https://gitlab.com/louis.jackman/neovim-config.git

@@ -1,0 +1,4 @@
+*.bk
+*.pyc
+.mypy_cache
+__pycache__
