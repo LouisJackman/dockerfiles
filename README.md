@@ -20,10 +20,9 @@ locally, and more. **Run `make help` to see the available targets.**
 ## Official Mirror of the GitLab Repository
 
 This repository is currently hosted [on
-GitLab.com](https://gitlab.com/louis.jackman/dockerfiles). Official mirrors
-exist on [SourceHut](https://git.sr.ht/~louisjackman/dockerfiles) and
-[GitHub](https://github.com/LouisJackman/dockerfiles). At the moment, GitLab
-is still the official hub for contributions such as PRs and issues.
+GitLab.com](https://gitlab.com/louis.jackman/dockerfiles). An official mirror
+exists on [GitHub](https://github.com/LouisJackman/dockerfiles). GitLab is still
+the official hub for contributions such as PRs and issues.
 
 ## Synopsis
 

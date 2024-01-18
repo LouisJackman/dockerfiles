@@ -98,6 +98,13 @@ class ContextBuilder:
             *platform_flags,
             "--pull",
             *push_flag,
+
+            # Workaround for issues like these:
+            #
+            # - https://gitlab.com/gitlab-org/gitlab/-/issues/388865
+            # - https://github.com/docker/buildx/issues/1533
+            "--provenance=false",
+
             *args,
             str(self.context),
         ]

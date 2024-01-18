@@ -20,7 +20,8 @@ RUN <<-EOF
     # Node.js and NPM are used by pyright.
     apt-get install --yes --no-install-recommends \
         nodejs \
-        npm
+        npm \
+        pipx
 
     rm -fr /var/lib/apt/lists/*
 EOF
