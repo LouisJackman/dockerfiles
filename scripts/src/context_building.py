@@ -37,9 +37,9 @@ class ContextBuilder:
         )
 
         # Strip numeric prefix which is only used for ordering builds.
-        self.name = extract_name_of_context(context)
+        self.name = extract_name_of_context(self.context)
 
-        self.version = version_context(context)
+        self.version = version_context(self.context)
         self.image = f"{image_store.prefix}/{self.name}"
         self.versioned_image = f"{self.image}:{self.version}"
 

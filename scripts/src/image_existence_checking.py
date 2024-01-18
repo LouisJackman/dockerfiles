@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import json
 from urllib import request
 from urllib.error import URLError
-from subprocess import DEVNULL, run
+from subprocess import DEVNULL, CalledProcessError, run
 
 from .image_stores import ImageStore, Registry
 
@@ -31,12 +31,16 @@ class ImageExistenceChecker:
     def does_exist_via_command(self, name: str, version: str) -> bool:
         img = f"{self.image_store.prefix}/{name}:{version}"
         secure = [] if self.secure_manifest_inspections else ["--insecure"]
-        proc = run(
-            ["docker", "manifest", "inspect", *secure, img],
-            stdout=DEVNULL,
-            stderr=DEVNULL,
-        )
-        return proc.returncode == 0
+        try:
+            run(
+                ["docker", "manifest", "inspect", *secure, img],
+                stdout=DEVNULL,
+                stderr=DEVNULL,
+            )
+            result = True
+        except CalledProcessError:
+            result = False
+        return result
 
     @classmethod
     def does_exist_via_api(cls, api_endpoint: str, name: str, version: str) -> bool:

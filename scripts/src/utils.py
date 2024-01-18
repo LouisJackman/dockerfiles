@@ -1,18 +1,19 @@
 from distutils.util import strtobool
 from pathlib import Path
 import re
-from subprocess import run
+from subprocess import CompletedProcess, run
+from typing import Iterable
 
 
-def docker(*args):
-    return run(["docker", *args])
+def docker(*args: str) -> CompletedProcess[bytes]:
+    return run(["docker", *args], check=True)
 
 
-def docker_build(*args):
+def docker_build(*args: str) -> CompletedProcess[bytes]:
     return docker("buildx", "build", *args)
 
 
-def check_valid_context(context):
+def check_valid_context(context: Path) -> None:
     if not (context / "Dockerfile").is_file():
         raise RuntimeError(
             "all directories in `context` should have a Dockerfile, but it "
@@ -25,7 +26,7 @@ def check_valid_context(context):
         )
 
 
-def get_contexts():
+def get_contexts() -> Iterable[Path]:
     for path in sorted(Path("contexts").iterdir()):
         if path.is_dir():
             check_valid_context(path)
@@ -38,7 +39,7 @@ CONTEXT_NAME_PATTERN = re.compile(
 )
 
 
-def extract_name_of_context(context):
+def extract_name_of_context(context: Path) -> str:
     match = CONTEXT_NAME_PATTERN.search(context.name)
     if not match:
         raise RuntimeError(f"could not extract name from {context}")
@@ -51,7 +52,7 @@ SEMANTIC_VERSION_PATTERN = re.compile(
 )
 
 
-def version_context(context):
+def version_context(context: Path) -> str:
     version = (context / "VERSION").read_text().strip()
     if not SEMANTIC_VERSION_PATTERN.search(version):
         raise RuntimeError(
@@ -60,5 +61,5 @@ def version_context(context):
     return version
 
 
-def arg_to_bool(arg):
+def arg_to_bool(arg: str) -> bool:
     return bool(strtobool(arg))

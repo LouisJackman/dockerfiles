@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser
-from functools import partial
 from pathlib import Path
 
 from src.image_stores import ImageStore, Registry
