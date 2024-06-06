@@ -73,7 +73,10 @@ class ContextBuilder:
             self._build_missing(*args)
 
     def _does_image_exist(self) -> bool:
-        return self._image_existence_checker.does_exist(self.name, self.version)
+        return self._image_existence_checker.does_exist(
+            self.name,
+            self.version,
+        )
 
     def _build_missing(self, *args: str) -> None:
         print(
@@ -98,7 +101,7 @@ class ContextBuilder:
         #
         # Don't mention provenance if the Docker version doesn't support it. If
         # it does, explicitly disable support for provenance.
-        if self._supports_provenance_flag:
+        if self._check_provenance_flag_support():
             provenance_flag = ["--provenance=false"]
         else:
             provenance_flag = []
@@ -130,9 +133,8 @@ class ContextBuilder:
     _MISSING_PROVENANCE_ERROR_MESSAGE = "unknown flag: --provenance"
 
     @classmethod
-    @property
     @lru_cache
-    def _supports_provenance_flag(cls) -> bool:
+    def _check_provenance_flag_support(cls) -> bool:
         try:
             docker_build("--provenance=false", "--help", stderr=PIPE)
         except CalledProcessError as error:
