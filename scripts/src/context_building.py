@@ -1,6 +1,6 @@
 from functools import lru_cache
 from pathlib import Path
-from subprocess import CalledProcessError, PIPE
+from subprocess import CalledProcessError, DEVNULL, PIPE
 
 from .image_stores import ImageStore
 from .image_existence_checking import ImageExistenceChecker
@@ -136,7 +136,7 @@ class ContextBuilder:
     @lru_cache
     def _check_provenance_flag_support(cls) -> bool:
         try:
-            docker_build("--provenance=false", "--help", stderr=PIPE)
+            docker_build("--provenance=false", "--help", stdout=DEVNULL, stderr=PIPE)
         except CalledProcessError as error:
             if cls._MISSING_PROVENANCE_ERROR_MESSAGE in error.stderr.decode():
                 return False
