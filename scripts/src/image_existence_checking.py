@@ -34,7 +34,10 @@ class ImageExistenceChecker:
         secure = [] if self.secure_manifest_inspections else ["--insecure"]
         try:
             docker(
-                "manifest", "inspect", *secure, img,
+                "manifest",
+                "inspect",
+                *secure,
+                img,
                 stdout=DEVNULL,
                 stderr=DEVNULL,
             )

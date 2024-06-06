@@ -5,12 +5,10 @@ from typing import Literal, Protocol, TypeGuard
 
 class ImageStore(Protocol):
     @property
-    def is_local(self) -> bool:
-        ...
+    def is_local(self) -> bool: ...
 
     @property
-    def prefix(self) -> str:
-        ...
+    def prefix(self) -> str: ...
 
 
 _REGISTRY_WITH_PROTO = re.compile(

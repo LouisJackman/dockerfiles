@@ -71,7 +71,7 @@ _FROM_CLAUSE_PREFIX = re.compile(
 
 def replace(context: Path, parent_image: str, to_version: str) -> str:
     from_image = re.compile(
-        fr"""
+        rf"""
         (?P<from_clause>
             {_FROM_CLAUSE_PREFIX.pattern}
             {re.escape(parent_image)}
@@ -82,7 +82,7 @@ def replace(context: Path, parent_image: str, to_version: str) -> str:
     )
 
     from_image_with_version = re.compile(
-        fr"""
+        rf"""
         {from_image.pattern}
         \d+ \.
         \d+ \.
