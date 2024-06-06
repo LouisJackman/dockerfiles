@@ -1,4 +1,3 @@
-from distutils.util import strtobool
 from pathlib import Path
 import re
 from subprocess import CompletedProcess, run
@@ -61,5 +60,18 @@ def version_context(context: Path) -> str:
     return version
 
 
+_TRUE_STR_REPRESENTATIONS = {"true", "t", "1", "on", "yes", "y"}
+_FALSE_STR_REPRESENTATIONS = {"false", "f", "0", "off", "no", "n"}
+
+
 def arg_to_bool(arg: str) -> bool:
-    return bool(strtobool(arg))
+    # This was migrated from using `distutils.strtobool`to a handrolled
+    # implementation as `distutils` was removed as a default package in
+    # Python 3.12.
+
+    normalised = arg.lower().strip()
+    if normalised in _TRUE_STR_REPRESENTATIONS:
+        return True
+    if normalised in _FALSE_STR_REPRESENTATIONS:
+        return False
+    raise ValueError(f"invalid boolean string representation: {arg}")
