@@ -4,12 +4,12 @@ from subprocess import CompletedProcess, run
 from typing import Iterable
 
 
-def docker(*args: str) -> CompletedProcess[bytes]:
-    return run(["docker", *args], check=True)
+def docker(*args: str, **kwargs) -> CompletedProcess[str]:
+    return run(["docker", *args], check=True, **kwargs)
 
 
-def docker_build(*args: str) -> CompletedProcess[bytes]:
-    return docker("buildx", "build", *args)
+def docker_build(*args, **kwargs) -> CompletedProcess[str]:
+    return docker("buildx", "build", *args, **kwargs)
 
 
 def check_valid_context(context: Path) -> None:

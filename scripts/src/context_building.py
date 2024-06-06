@@ -1,4 +1,6 @@
+from functools import lru_cache
 from pathlib import Path
+from subprocess import CalledProcessError, PIPE
 
 from .image_stores import ImageStore
 from .image_existence_checking import ImageExistenceChecker
@@ -89,6 +91,18 @@ class ContextBuilder:
 
         push_flag = ["--push"] if self.push else ["--load"]
 
+        # Workaround for issues like these:
+        #
+        # - https://gitlab.com/gitlab-org/gitlab/-/issues/388865
+        # - https://github.com/docker/buildx/issues/1533
+        #
+        # Don't mention provenance if the Docker version doesn't support it. If
+        # it does, explicitly disable support for provenance.
+        if self._supports_provenance_flag:
+            provenance_flag = ["--provenance=false"]
+        else:
+            provenance_flag = []
+
         return [
             f"--build-arg=REGISTRY={self.image_store.prefix}",
             "--tag",
@@ -98,13 +112,7 @@ class ContextBuilder:
             *platform_flags,
             "--pull",
             *push_flag,
-
-            # Workaround for issues like these:
-            #
-            # - https://gitlab.com/gitlab-org/gitlab/-/issues/388865
-            # - https://github.com/docker/buildx/issues/1533
-            "--provenance=false",
-
+            *provenance_flag,
             *args,
             str(self.context),
         ]
@@ -118,3 +126,16 @@ class ContextBuilder:
         else:
             result = self.default_platforms
         return result
+
+    _MISSING_PROVENANCE_ERROR_MESSAGE = "unknown flag: --provenance"
+
+    @classmethod
+    @property
+    @lru_cache
+    def _supports_provenance_flag(cls) -> bool:
+        try:
+            docker_build("--provenance=false", "--help", stderr=PIPE)
+        except CalledProcessError as error:
+            if cls._MISSING_PROVENANCE_ERROR_MESSAGE in error.stderr.decode():
+                return False
+        return True

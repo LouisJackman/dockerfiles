@@ -2,9 +2,10 @@ from dataclasses import dataclass
 import json
 from urllib import request
 from urllib.error import URLError
-from subprocess import DEVNULL, CalledProcessError, run
+from subprocess import DEVNULL, CalledProcessError
 
 from .image_stores import ImageStore, Registry
+from .utils import docker
 
 
 @dataclass
@@ -32,8 +33,8 @@ class ImageExistenceChecker:
         img = f"{self.image_store.prefix}/{name}:{version}"
         secure = [] if self.secure_manifest_inspections else ["--insecure"]
         try:
-            run(
-                ["docker", "manifest", "inspect", *secure, img],
+            docker(
+                "manifest", "inspect", *secure, img,
                 stdout=DEVNULL,
                 stderr=DEVNULL,
             )
