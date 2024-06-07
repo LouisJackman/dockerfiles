@@ -3,7 +3,7 @@
 ARG REGISTRY
 
 
-FROM ${REGISTRY}/debian-slim:0.0.1
+FROM ${REGISTRY}/debian-slim:0.0.2
 
 ARG AWS_VAULT_VERSION=6.6.0
 

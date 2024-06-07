@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4.1
 
-FROM debian:bookworm-20230502-slim
+FROM debian:bookworm-20240513-slim
 
 # Modify this in case the default UID/GIDs cause permission problems when
 # working inside bind-mounted volumes.
