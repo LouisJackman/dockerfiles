@@ -99,6 +99,7 @@ publish:
 		--remaining-docker-build-args="$$ADDITIONAL_DOCKER_BUILD_FLAGS" \
 		--image-store="$$REMOTE_REGISTRY" \
 		--default-platforms="$$DEFAULT_PLATFORMS" \
+		--push=true \
 		--stop-on-first-error="$$STOP_ON_FIRST_BUILD_ERROR"
 
 .PHONY: cascade-version-updates
