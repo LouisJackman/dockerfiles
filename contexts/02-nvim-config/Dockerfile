@@ -3,10 +3,10 @@
 ARG REGISTRY
 
 
-FROM ${REGISTRY}/nvim-build:0.0.1 as nvim-build
+FROM ${REGISTRY}/nvim-build:0.0.2 as nvim-build
 
 
-FROM ${REGISTRY}/debian-slim:0.0.1
+FROM ${REGISTRY}/debian-slim:0.0.2
 
 USER root
 RUN <<-EOF

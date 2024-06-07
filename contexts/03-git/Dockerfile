@@ -3,7 +3,7 @@
 ARG REGISTRY
 
 
-FROM ${REGISTRY}/nvim-config:0.0.1
+FROM ${REGISTRY}/nvim-config:0.0.3
 
 USER root
 RUN <<-EOF

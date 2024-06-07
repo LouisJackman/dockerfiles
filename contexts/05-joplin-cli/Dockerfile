@@ -2,7 +2,7 @@
 
 ARG REGISTRY
 
-FROM ${REGISTRY}/node-dev:0.0.1
+FROM ${REGISTRY}/node-dev:0.0.2
 
 ENV JOPLIN_VERSION=2.10.3
 

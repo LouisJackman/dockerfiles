@@ -3,7 +3,7 @@
 ARG REGISTRY
 
 
-FROM ${REGISTRY}/base-dev:0.0.1
+FROM ${REGISTRY}/base-dev:0.0.2
 
 USER root
 RUN <<-EOF

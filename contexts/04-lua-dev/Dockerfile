@@ -3,7 +3,7 @@
 ARG REGISTRY
 
 
-FROM ${REGISTRY}/base-dev:0.0.1
+FROM ${REGISTRY}/base-dev:0.0.2
 
 ARG LUA_VERSION=5.4 \
     LUA_LSP_VERSION=0.1.0-2 \

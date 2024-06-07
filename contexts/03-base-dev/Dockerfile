@@ -2,7 +2,7 @@
 
 ARG REGISTRY
 
-FROM ${REGISTRY}/nvim-config:0.0.1
+FROM ${REGISTRY}/nvim-config:0.0.3
 
 ARG ASDF_VERSION=0.11.3
 

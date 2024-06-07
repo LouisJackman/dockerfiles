@@ -3,7 +3,7 @@
 ARG REGISTRY
 
 
-FROM ${REGISTRY}/base-dev:0.0.1
+FROM ${REGISTRY}/base-dev:0.0.2
 
 ARG GO_VERSION=1.21.6 \
     GO_DOC_VERSION=0.2.0 \
