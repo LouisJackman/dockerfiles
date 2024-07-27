@@ -2,11 +2,11 @@
 
 FROM debian:bookworm-20240513-slim
 
+SHELL ["/bin/bash", "-o", "errexit", "-o", "pipefail", "-o", "nounset", "-c"]
+
 # Modify this in case the default UID/GIDs cause permission problems when
 # working inside bind-mounted volumes.
 ARG USER_UID_GID=1000
-
-SHELL ["/bin/bash", "-o", "errexit", "-o", "pipefail", "-o", "nounset", "-c"]
 
 ENV LANG=C.UTF-8
 
@@ -31,4 +31,3 @@ ENV PATH=/home/user/.local/bin:$PATH
 
 VOLUME /home/user/workspace
 WORKDIR /home/user/workspace
-
